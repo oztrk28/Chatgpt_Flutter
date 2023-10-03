@@ -1,0 +1,92 @@
+digraph Architecture {
+    rankdir = TB;  // Top to Bottom direction
+    node [shape=rect];  // Rectangle shape for all nodes
+	// Define nodes for each user type
+//	subgraph cluster_users {
+//		label = "Users";
+//		style=filled;
+//		color=lightgrey;
+//		Admin [label="Admin"];
+//		Teacher [label="Teacher"];
+//		Student [label="Student"];
+//	}
+
+    // Define nodes for each level
+    subgraph cluster_UI {
+        label = "User Interface (UI) Level";
+        labeljust=l;
+        fontsize=20;
+        style=filled;
+        color=lightgrey;
+        LoginInterface [label="Login Interface"];
+        MenuInterface [label="Menu Interface"];
+        ManagementInterface [label="Management Interface"];
+        // ReviewFeedbackInterface [label="Review Feedback Interface"];
+        FeedbackInterface [label="Feedback Interface"];
+        ChatInterface [label="Chat Interface"];
+    }
+
+    subgraph cluster_Logic {
+        label = "Logic Level";
+        node [shape=rect];  // Rectangle shape for all nodes in this subgraph
+        labeljust=l;
+        fontsize=20;
+        style=filled;
+        color=lightgrey;
+        OpenAIAPI [label="OpenAI API"];
+        ManagementLogic [label="Management Logic"];
+        //PromptLogic [label="Prompt Logic"];
+        //ChatLogic [label="Chat Logic"];
+
+        FeedbackLogic [label="Feedback Logic"];
+        subgraph cluster_chatlogic {
+			label = "Chat Logic Stack";
+			//labeljust=l;
+			style=filled;
+			color=lightgreen;
+			//ModelPreparation [label="Model Preparation"];
+			PromptLogic [label="Prompt Logic"];
+			OpenAIAPI [label="OpenAI API"];
+			ChatLogic [label="Chat Logic"];
+			EvaluationLogic [label="Evaluation Logic"];
+		}
+
+    }
+
+    subgraph cluster_DB {
+    	node [shape=cylinder];  // Cylinder shape for all nodes in this subgraph
+        label = "Database Level";
+        labeljust=l;
+        fontsize=20;
+        style=filled;
+        color=lightgrey;
+        ManagementData [label="Management Data"];
+        //ScenarioData [label="Scenario Data"];
+        ChatData [label="Chat Data"];
+        EvaluationData [label="Evaluation Data"];
+        //UserData [label="User Data"];
+        FeedbackData [label="Feedback Data"];
+    }
+
+    // Define relationships
+    //Student -> LoginInterface [label="Accesses"];
+    //Teacher -> LoginInterface [label="Accesses"];
+    //Admin -> LoginInterface [label="Accesses"];
+    LoginInterface -> {MenuInterface} [label="Enables"];
+    MenuInterface -> {ManagementInterface FeedbackInterface ChatInterface} [label="Selects"];
+    ManagementInterface -> {ManagementLogic} [label="Drives"];
+    //ReviewFeedbackInterface -> {EvaluationLogic} [label="Drives"];
+    OpenAIAPI -> EvaluationLogic [label="Responds"];
+    ChatInterface -> ChatLogic [label="Drives"];
+    FeedbackInterface -> FeedbackLogic [label="Drives"];
+    // OpenAIAPI -> ModelPreparation [label="Queries"];
+    PromptLogic -> OpenAIAPI [label="Prompts"];
+    //OpenAIAPI -> PromptLogic [label="Responds"];
+    OpenAIAPI -> ChatLogic [label="Responds"];
+
+    //ModelPreparation -> ChatLogic [label="Prepares"];
+    ManagementLogic -> {ManagementData} [label="Accesses"];
+    ChatLogic -> {ChatData} [label="Saves"];
+    FeedbackLogic -> {FeedbackData} [label="Saves"];
+    EvaluationLogic -> {EvaluationData} [label="Saves"];
+}

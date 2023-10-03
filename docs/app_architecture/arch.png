@@ -1,0 +1,82 @@
+digraph Architecture {
+	graph [bb="0,0,704,307"];
+	node [label="\N"];
+	subgraph cluster_UI {
+		graph [bb="8,224,696,299",
+			label="User Interface (UI) Level",
+			lheight=0.21,
+			lp="352,287.5",
+			lwidth=2.49
+		];
+		ChatInterface	[height=0.5,
+			label="Chat Interface",
+			pos="93,250",
+			width=2.1484];
+		ScenarioSelectionInterface	[height=0.5,
+			label="Scenario Selection Interface",
+			pos="330,250",
+			width=3.9358];
+		FeedbackInterface	[height=0.5,
+			label="Feedback Interface",
+			pos="589,250",
+			width=2.7623];
+	}
+	subgraph cluster_Logic {
+		graph [bb="69,116,689,191",
+			label="Logic Level",
+			lheight=0.21,
+			lp="379,179.5",
+			lwidth=1.14
+		];
+		ChatLogic	[height=0.5,
+			label="Chat Logic",
+			pos="137,142",
+			width=1.679];
+		ScenarioManagement	[height=0.5,
+			label="Scenario Management",
+			pos="330,142",
+			width=3.1955];
+		FeedbackGeneration	[height=0.5,
+			label="Feedback Generation",
+			pos="572,142",
+			width=3.0331];
+	}
+	subgraph cluster_DB {
+		graph [bb="53,8,531,83",
+			label="Database Level",
+			lheight=0.21,
+			lp="292,71.5",
+			lwidth=1.53
+		];
+		ScenarioData	[height=0.5,
+			label="Scenario Data",
+			pos="137,34",
+			width=2.1123];
+		UserData	[height=0.5,
+			label="User Data",
+			pos="289,34",
+			width=1.6068];
+		FeedbackData	[height=0.5,
+			label="Feedback Data",
+			pos="444,34",
+			width=2.2026];
+	}
+	ChatInterface -> ChatLogic	[label=Drives,
+		lp="137.5,206.5",
+		pos="e,129.95,159.99 100.07,231.97 107.09,215.05 117.96,188.86 126.09,169.28"];
+	ScenarioSelectionInterface -> ScenarioManagement	[label=Drives,
+		lp="353.5,206.5",
+		pos="e,330,160.34 330,231.97 330,215.38 330,189.88 330,170.43"];
+	FeedbackInterface -> FeedbackGeneration	[label=Drives,
+		lp="606.5,206.5",
+		pos="e,574.78,160.34 586.27,231.97 583.61,215.38 579.52,189.88 576.4,170.43"];
+	ChatLogic -> ScenarioData	[label=Accesses,
+		lp="169,98.5",
+		pos="e,137,52.341 137,123.97 137,107.38 137,81.883 137,62.431"];
+	ChatLogic -> UserData	[label=Accesses,
+		lp="256,98.5",
+		pos="e,271.9,51.468 168.65,126.57 180.4,120.74 193.62,113.59 205,106 226.29,91.789 248.32,72.991 264.47,58.307"];
+	FeedbackGeneration -> FeedbackData	[label=Accesses,
+		lp="558,98.5",
+		pos="e,464.19,51.717 551.72,124.2 530.18,106.37 496,78.065 471.93,58.13"];
+}

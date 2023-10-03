@@ -1,16 +1,11 @@
-# chatgpt_flutter
+# Medchat Application for CSCE 606
 
-A new Flutter project.
+## Team Members
+- Yunus E Ozturk
+- Kyle J Baldes 
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Prototype Important Files
+- [UI Examples and Description](./docs/UI/MedGPT_App_UI.pdf)
+- [Database Design](./docs/database_design/README.md)
+- [Architectural Design Diagram](./docs/app_architecture/arch.pdf)
+- [Video Demos](https://www.youtube.com/watch?v=dyippTf4jc0)
